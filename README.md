@@ -12,3 +12,17 @@ Licensing
 ---------
 
 MIT
+
+Usage
+-----
+
+	{
+        test: /\.nunj$/,
+        loader: 'file?context=' + precompiledContext + '&name=[path][name].html!nunjucks-html?' +
+        	JSON.stringify({
+        		'searchPaths': [
+					'/path/to/sources',
+					'/path/to/more/sources'
+				]
+        	})
+    }
