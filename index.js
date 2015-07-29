@@ -61,7 +61,8 @@ module.exports = function(content) {
 	}.bind(this));
 
 	var nunjEnv = new nunjucks.Environment(loader);
-
+	nunjucks.configure(null, { watch: false });
+	
 	var template = nunjucks.compile(content, nunjEnv);
 	html = template.render();
 
