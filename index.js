@@ -55,6 +55,7 @@ module.exports = function(content) {
 	var opt = utils.parseQuery(this.query);
 
 	var nunjucksSearchPaths = opt.searchPaths;
+	var nunjucksContext = opt.context;
 
 	var loader = new NunjucksLoader(nunjucksSearchPaths, function(path) {
 		this.addDependency(path);
@@ -64,7 +65,7 @@ module.exports = function(content) {
 	nunjucks.configure(null, { watch: false });
 	
 	var template = nunjucks.compile(content, nunjEnv);
-	html = template.render();
+	html = template.render(nunjucksContext);
 
 	callback(null, html);
 };
