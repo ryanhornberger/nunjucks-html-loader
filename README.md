@@ -31,19 +31,6 @@ Add your personal variation to the below loader configuration to your webpack co
     }
 
 
-See it in action with the Epicenter project
--------------------------------------------
-
-This is a small piece on a much larger vision to use webpack for more than compiling javascript. See how I'm using it to precompile a static site:
-
-[https://github.com/ryanhornberger/node-epicenter](https://github.com/ryanhornberger/node-epicenter)
-
-[https://www.npmjs.com/package/epicenter](https://www.npmjs.com/package/epicenter)
-
-
-
-
-
 [npm-url]: https://www.npmjs.com/package/nunjucks-html-loader
 [npm-image]: https://img.shields.io/npm/v/nunjucks-html-loader.svg
 [github-url]: https://github.com/ryanhornberger/nunjucks-html-loader
