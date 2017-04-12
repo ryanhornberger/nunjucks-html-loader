@@ -63,6 +63,13 @@ module.exports = function(content) {
 
 	var nunjEnv = new nunjucks.Environment(loader);
 	nunjucks.configure(null, { watch: false });
+
+    try {
+        var frontmatter = JSON.parse(content)
+        content = frontmatter.body
+        nunjucksContext = Object.assign({}, nunjucksContext, frontmatter.attributes)
+    }
+    catch(e) {}
 	
 	var template = nunjucks.compile(content, nunjEnv);
 	html = template.render(nunjucksContext);
