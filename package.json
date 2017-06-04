@@ -26,6 +26,7 @@
   "dependencies": {
     "loader-utils": "^0.2.16",
     "nunjucks": "^3.0.0"
+    "nunjucks-includeData": "^0.0.9"
   },
   "devDependencies": {}
 }
