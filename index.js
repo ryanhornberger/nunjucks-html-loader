@@ -2,6 +2,7 @@ var utils = require('loader-utils');
 var fs = require('fs');
 var path = require('path');
 var nunjucks = require('nunjucks');
+var nunjucksData = require('nunjucks-includeData');
 
 var NunjucksLoader = nunjucks.Loader.extend({
     //Based off of the Nunjucks 'FileSystemLoader' 
@@ -63,6 +64,7 @@ module.exports = function(content) {
 
 	var nunjEnv = new nunjucks.Environment(loader);
 	nunjucks.configure(null, { watch: false });
+  	nunjucksData.install(nunjEnv);
 	
 	var template = nunjucks.compile(content, nunjEnv);
 	html = template.render(nunjucksContext);
