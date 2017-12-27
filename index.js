@@ -4,7 +4,7 @@ var path = require('path');
 var nunjucks = require('nunjucks');
 
 var NunjucksLoader = nunjucks.Loader.extend({
-    //Based off of the Nunjucks 'FileSystemLoader' 
+    //Based off of the Nunjucks 'FileSystemLoader'
 
     init: function(searchPaths, sourceFoundCallback) {
     	this.sourceFoundCallback = sourceFoundCallback;
@@ -40,30 +40,30 @@ var NunjucksLoader = nunjucks.Loader.extend({
 
         this.sourceFoundCallback(fullpath);
 
-        return { 
+        return {
 			src: fs.readFileSync(fullpath, 'utf-8'),
 			path: fullpath,
-			noCache: this.noCache 
+			noCache: this.noCache
 		};
     }
 });
 
 module.exports = function(content) {
 	this.cacheable();
-  
+
 	var callback = this.async();
-	var opt = utils.parseQuery(this.query);
+	var opt = utils.getOptions(this) || {};
 
 	var nunjucksSearchPaths = opt.searchPaths;
 	var nunjucksContext = opt.context;
+	var config = opt.configure || {};
 
-	var loader = new NunjucksLoader(nunjucksSearchPaths, function(path) {
+	var loader = new NunjucksLoader(nunjucksSearchPaths, function (path) {
 		this.addDependency(path);
 	}.bind(this));
 
-	var nunjEnv = new nunjucks.Environment(loader);
-	nunjucks.configure(null, { watch: false });
-	
+	var nunjEnv = new nunjucks.Environment(loader, config);
+
 	var template = nunjucks.compile(content, nunjEnv);
 	html = template.render(nunjucksContext);
 
