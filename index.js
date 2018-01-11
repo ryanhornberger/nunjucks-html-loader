@@ -56,13 +56,16 @@ module.exports = function(content) {
 
 	var nunjucksSearchPaths = opt.searchPaths;
 	var nunjucksContext = opt.context;
-	var config = opt.configure || {};
+    var config = opt.configure || {};
+    var configureEnvironment = opt.configureEnvironment || function(env) {};
 
 	var loader = new NunjucksLoader(nunjucksSearchPaths, function (path) {
 		this.addDependency(path);
 	}.bind(this));
 
-	var nunjEnv = new nunjucks.Environment(loader, config);
+    var nunjEnv = new nunjucks.Environment(loader, config);
+    
+    configureEnvironment(nunjEnv);
 
 	var template = nunjucks.compile(content, nunjEnv);
 	html = template.render(nunjucksContext);
