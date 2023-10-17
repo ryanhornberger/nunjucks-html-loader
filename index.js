@@ -52,7 +52,7 @@ module.exports = function(content) {
 	this.cacheable();
   
 	var callback = this.async();
-	var opt = utils.parseQuery(this.query);
+	var opt = this.getOptions();
 
 	var nunjucksSearchPaths = opt.searchPaths;
 	var nunjucksContext = opt.context;
